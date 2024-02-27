@@ -1,0 +1,11 @@
+[
+  {
+    "title": "laptop",
+    "description": "laptop i3 12gen, 16gb ram, Nvidia rtx 3060ti, FHD screen",
+    "price": "$900",
+    "thumbnail": "./assets/laptop.png",
+    "code": 1,
+    "stock": 20,
+    "id": 1
+  }
+]
