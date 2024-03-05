@@ -1,23 +1,12 @@
+import { promises as fs } from 'fs';
+import Product from './product.js';
 
-const fs = require('fs').promises;
-
-class Product {
-    constructor(title, description, price, thumbnail, code, stock) {
-        this.title = title;
-        this.description = description;
-        this.price = price;
-        this.thumbnail = thumbnail;
-        this.code = code;
-        this.stock = stock;
-    }
-}
-
-class ProductManager {
+export default class ProductManager {
     constructor(filePath) {
         this.path = filePath;
         this.products = [];
         this.lastId = 0;
-        this.loadProducts().then(() => this.init()); // Initialize product manager after loading products
+        this.loadProducts().then(() => this.init()); 
     }
 
     async loadProducts() {
@@ -92,24 +81,24 @@ class ProductManager {
     }
 
     async init() {
-        const product1 = new Product(`laptop`, `laptop i3 12gen, 16gb ram, Nvidia rtx 3060ti, FHD screen`, `$800`, `./assets/laptop.png`, 1, 25)
-        const product2 = new Product(`pc`, `pc i5 13gen, 16gb ram, Nvidia RTX 4050`, `$1200`, `./assets/pc.webp`, 2, 15)
+        const productsToAdd = [
+            new Product(`laptop`, `laptop i3 12gen, 16gb ram, Nvidia rtx 3060ti, FHD screen`, 800, `./assets/laptop.png`, 1, 25),
+            new Product(`pc`, `pc i5 13gen, 16gb ram, Nvidia RTX 4050`, 1200, `./assets/pc.webp`, 2, 15),
+            new Product(`Smartphone`, `Smartphone Android 10, 8GB RAM, 128GB almacenamiento, Cámara 48MP`, 600, `./assets/smartphone.png`, 3, 30),
+            new Product(`Tablet`, `Tablet 10", 4GB RAM, 64GB almacenamiento, Pantalla HD, Wi-Fi`, 300, `./assets/tablet.png`, 4, 20),
+            new Product(`Smart TV`, `Smart TV 55" 4K Ultra HD, HDR, Dolby Vision, Android TV`, 1000, `./assets/smart_tv.png`, 5, 10),
+            new Product(`Cámara DSLR`, `Cámara DSLR Full Frame 24.2MP, 4K Video, Wi-Fi, Bluetooth`, 1500, `./assets/camera.png`, 6, 15),
+            new Product(`Auriculares Bluetooth`, `Auriculares Bluetooth Over-Ear, Cancelación de Ruido, Micrófono Integrado`, 200, `./assets/headphones.png`, 7, 40),
+            new Product(`Altavoz Inteligente`, `Altavoz Inteligente con Asistente de Voz, Wi-Fi, Bluetooth, Control de Hogar`, 120, `./assets/smart_speaker.png`, 8, 50),
+            new Product(`Monitor Gaming`, `Monitor Gaming 27" Curvo, Resolución QHD, Frecuencia de Actualización 144Hz`, 400, `./assets/gaming_monitor.png`, 9, 25),
+            new Product(`Teclado Mecánico`, `Teclado Mecánico RGB, Interruptores Cherry MX, Diseño Compacto`, 150, `./assets/mechanical_keyboard.png`, 10, 35)
+        ];
 
-        await this.addProduct(product1);
-        await this.addProduct(product2);
+        for (const product of productsToAdd) {
+            await this.addProduct(product);
+        }
 
         console.log(await this.getProducts()); // Mostrar todos los productos
         console.log(await this.getProductById(1)); // Obtener producto por id (existentes)
-        console.log(await this.getProductById(3)); // Obtener producto por id (no existente)
-
-        // Actualizar producto
-        await this.updateProduct(1, { price: "$900", stock: 20 });
-        console.log(await this.getProductById(1));
-
-        // Eliminar producto
-        await this.deleteProduct(2);
-        console.log(await this.getProducts());
     }
 }
-
-const productManager = new ProductManager('products.json');
