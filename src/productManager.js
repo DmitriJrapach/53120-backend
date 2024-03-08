@@ -63,4 +63,16 @@ export default class ProductManager {
         // Guardar los productos actualizados en el archivo
         await this.saveProducts();
     }
+    async updateProduct(id, updatedProduct) {
+        const index = this.products.findIndex(product => product.id === id);
+        if (index !== -1) {
+            // Actualizar el producto en la lista de productos
+            this.products[index] = updatedProduct;
+            // Guardar los productos actualizados en el archivo
+            await this.saveProducts();
+        } else {
+            console.error(`Producto con ID ${id} no encontrado.`);
+        }
+    }
+    
 }

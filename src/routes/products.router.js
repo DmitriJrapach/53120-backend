@@ -3,10 +3,10 @@ import ProductManager from "../productManager.js";
 import Product from "../product.js";
 
 const router = express.Router();
-const productManager = new ProductManager('products.json');
+const productManager = new ProductManager('./data/products.json');
 
 // router.use(express.json());
-router.use(express.urlencoded({extended: true}));
+// router.use(express.urlencoded({extended: true}));
 
 router.get("/", async (req, res) => {
     try {
@@ -44,7 +44,7 @@ router.put("/:pid", async (req, res) => {
         const { title, description, price, thumbnail, code, stock } = req.body;
 
         // Comprobar si todos los campos obligatorios están presentes
-        if (!title || !description || !price || !thumbnail || !code || !stock) {
+        if (!title || !description || !price ||  !code || !stock) {
             return res.status(400).json({ error: "Todos los campos son obligatorios" });
         }
 
@@ -58,7 +58,7 @@ router.put("/:pid", async (req, res) => {
         existingProduct.title = title;
         existingProduct.description = description;
         existingProduct.price = price;
-        existingProduct.thumbnail = thumbnail;
+        // existingProduct.thumbnail = thumbnail;
         existingProduct.code = code;
         existingProduct.stock = stock;
 
@@ -106,5 +106,26 @@ router.post("/", async (req, res) => {
         res.status(500).json({ error: "Error al agregar el producto" });
     }
 });
+
+router.delete("/:pid", async (req, res) => {
+    try {
+        const productId = parseInt(req.params.pid);
+
+        // Obtener el producto por su ID
+        const productToDelete = await productManager.getProductById(productId);
+        if (!productToDelete) {
+            return res.status(404).json({ error: "Producto no encontrado" });
+        }
+
+        // Eliminar el producto
+        await productManager.deleteProduct(productId);
+
+        res.json({ message: "Producto eliminado correctamente" });
+    } catch (error) {
+        console.error("Error al eliminar el producto: ", error);
+        res.status(500).json({ error: "Error al eliminar el producto" });
+    }
+});
+
 
 export default router;
