@@ -1,0 +1,38 @@
+.thumb-wrapper {
+    position: relative;
+    overflow: hidden;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+  
+  .product-details {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background-color: #f8f9fa; /* Color de fondo */
+    padding: 15px;
+    border-bottom-left-radius: 8px;
+    border-bottom-right-radius: 8px;
+  }
+  
+  .button-container {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    text-align: center;
+    padding: 10px;
+  }
+  
+  .product-details h3 {
+    margin-top: 0;
+  }
+  
+  .card-img {
+    transition: transform 0.2s; /* Agregar transición en hover */
+  }
+  
+  .card-img:hover {
+    transform: scale(1.1); /* Aumentar tamaño en hover */
+  }

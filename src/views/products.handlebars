@@ -11,21 +11,21 @@
           <div class="image-container">
             <img class="card-img" src="{{this.thumbnails}}" alt="{{this.title}}" />
             <div class="mask"></div>
-            <figcaption>
-              <button class="btn-detalles" data-id="{{this.id}}" data-title="{{this.title}}"
-                data-description="{{this.description}}" data-category="{{this.category}}" data-price="{{this.price}}"
-                data-code="{{this.code}}" data-stock="{{this.stock}}" data-thumbnails="{{this.thumbnails}}">
-                Ver Detalles
-              </button>
-
-            </figcaption>
           </div>
         </figure>
-        <p>{{this.title}}</p>
-        <p>${{this.price}}</p>
+        <div class="product-details">
+          <p>{{this.title}}</p>
+          <p>${{this.price}}</p>
+        </div>
+        <div class="button-container">
+          <button class="btn-detalles" data-id="{{this.id}}" data-title="{{this.title}}"
+            data-description="{{this.description}}" data-category="{{this.category}}" data-price="{{this.price}}"
+            data-code="{{this.code}}" data-stock="{{this.stock}}" data-thumbnails="{{this.thumbnails}}">
+            Ver Detalles
+          </button>
+        </div>
       </div>
     </article>
-
     {{/each}}
   </div>
   {{else}}
@@ -34,23 +34,58 @@
   {{/if}}
 </div>
 
-<!-- MODAL DETALLES -->
-<div class="modal fade" id="detallesModal" tabindex="-1" aria-labelledby="detallesModalLabel">
-  <div class="modal-dialog modal-dialog-mio modal-dialog-centered">
-    <div class="modal-content modal-content-mio" id="detallesModalLabel">
+<!-- Detalles del producto -->
+<div class="modal fade" id="detallesProductoModal" tabindex="-1" aria-labelledby="detallesProductoModalLabel">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
       <div class="modal-header">
-        <h1 class="modal-title texto-xs"></h1>
-        <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"></button>
+        <h5 class="modal-title" id="detallesProductoModalLabel"></h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
-      <div class="modal-body">
-        <span id="productDetails">Detalles del producto</span>
+      <div class="modal-body" id="detallesProductoBody">
+        <!-- Aquí se mostrarán los detalles del producto -->
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-primary btn-mio" data-dismiss="modal">Cerrar</button>
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
       </div>
     </div>
   </div>
 </div>
 
-<!-- Scripts necesarios -->
-<script src="/js/modalScript.js"></script>
+<!-- Script para mostrar detalles del producto -->
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    document.querySelectorAll(".btn-detalles").forEach((boton) => {
+      boton.addEventListener("click", function () {
+        const id = this.getAttribute("data-id");
+        const title = this.getAttribute("data-title");
+        const description = this.getAttribute("data-description");
+        const category = this.getAttribute("data-category");
+        const price = this.getAttribute("data-price");
+        const code = this.getAttribute("data-code");
+        const stock = this.getAttribute("data-stock");
+        const thumbnails = this.getAttribute("data-thumbnails");
+
+        mostrarDetallesProducto({ id, title, description, category, price, code, stock, thumbnails });
+      });
+    });
+  });
+
+  function mostrarDetallesProducto({ id, title, description, category, price, code, stock, thumbnails }) {
+    const modalTitle = document.getElementById("detallesProductoModalLabel");
+    const modalBody = document.getElementById("detallesProductoBody");
+
+    modalTitle.innerText = title;
+    modalBody.innerHTML = `
+      <p>Descripción: ${description}</p>
+      <p>Categoría: ${category}</p>
+      <p>Precio: ${price}</p>
+      <p>Código: ${code}</p>
+      <p>Stock disponible: ${stock}</p>
+    `;
+
+    // Mostrar el modal de detalles del producto
+    const detallesProductoModal = new bootstrap.Modal(document.getElementById("detallesProductoModal"));
+    detallesProductoModal.show();
+  }
+</script>
