@@ -1,6 +1,6 @@
 import express from "express";
-import ProductManager from "../productManager.js";
-import Product from "../product.js";
+import ProductManager from "../services/productManager.js";
+import Product from "../services/product.js";
 
 const router = express.Router();
 const productManager = new ProductManager('./data/products.json');

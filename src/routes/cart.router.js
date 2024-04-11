@@ -1,5 +1,5 @@
 import express from 'express';
-import CartManager from '../cartManager.js'; 
+import CartManager from '../services/cartManager.js'; 
 
 const router = express.Router();
 const cartManager = new CartManager('./data/cart.json'); 

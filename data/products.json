@@ -1,16 +1,5 @@
 [
   {
-    "id": 29,
-    "title": "bolso",
-    "description": "boton",
-    "code": "siss",
-    "price": "260",
-    "status": true,
-    "stock": "4",
-    "category": "luis",
-    "thumbnails": []
-  },
-  {
     "id": 69,
     "title": "bolsa",
     "description": "boadaon",
@@ -19,7 +8,9 @@
     "status": true,
     "stock": "42",
     "category": "luiswe",
-    "thumbnails": []
+    "thumbnails": [
+      "img/noThumbnails.webp"
+    ]
   },
   {
     "id": 70,
@@ -30,7 +21,9 @@
     "status": true,
     "stock": "42",
     "category": "luiswe",
-    "thumbnails": []
+    "thumbnails": [
+      "img/noThumbnails.webp"
+    ]
   },
   {
     "id": 71,
@@ -41,7 +34,9 @@
     "status": true,
     "stock": "42",
     "category": "luiswe",
-    "thumbnails": []
+    "thumbnails": [
+      "img/noThumbnails.webp"
+    ]
   },
   {
     "id": 88,
@@ -52,7 +47,9 @@
     "status": true,
     "stock": "12",
     "category": "lola",
-    "thumbnails": []
+    "thumbnails": [
+      "img/noThumbnails.webp"
+    ]
   },
   {
     "id": 89,
@@ -63,7 +60,9 @@
     "status": true,
     "stock": "12",
     "category": "lola",
-    "thumbnails": []
+    "thumbnails": [
+      "img/noThumbnails.webp"
+    ]
   },
   {
     "id": 90,
@@ -74,7 +73,9 @@
     "status": true,
     "stock": "12",
     "category": "lola",
-    "thumbnails": []
+    "thumbnails": [
+      "img/noThumbnails.webp"
+    ]
   },
   {
     "id": 91,
@@ -85,6 +86,34 @@
     "status": true,
     "stock": "12",
     "category": "lola",
-    "thumbnails": []
+    "thumbnails": [
+      "img/noThumbnails.webp"
+    ]
+  },
+  {
+    "id": 92,
+    "title": "zapatillas",
+    "description": "vans",
+    "code": "qqq",
+    "price": "240123",
+    "status": true,
+    "stock": "12",
+    "category": "zapatos",
+    "thumbnails": [
+      "img/noThumbnails.webp"
+    ]
+  },
+  {
+    "id": 93,
+    "title": "zapatillas",
+    "description": "adidas",
+    "code": "333",
+    "price": "300000",
+    "status": true,
+    "stock": "12",
+    "category": "calzado",
+    "thumbnails": [
+      "img/noThumbnails.webp"
+    ]
   }
 ]
